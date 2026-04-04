@@ -90,6 +90,7 @@ function App() {
       ...current,
       [name]: value,
     }));
+    console.log("Current form data:", formData);
   };
 
   const handleReset = () => {
@@ -99,42 +100,61 @@ function App() {
   };
 
   const handlePredict = () => {
-    const ageDays = parseNumericInput(formData.ageAtSequencingDays);
-    const mutationCount = parseNumericInput(formData.mutationCount);
-    const tmb = parseNumericInput(formData.tmb);
-    const purity = parseNumericInput(formData.tumorPurity);
+    /** Manual Input Prediction */
+    if (activeTab === 0) {
+      const ageDays = parseNumericInput(formData.ageAtSequencingDays);
+      const mutationCount = parseNumericInput(formData.mutationCount);
+      const tmb = parseNumericInput(formData.tmb);
+      const purity = parseNumericInput(formData.tumorPurity);
 
-    if (
-      ageDays === null ||
-      mutationCount === null ||
-      tmb === null ||
-      purity === null
-    ) {
-      return;
+      if (
+        ageDays === null ||
+        mutationCount === null ||
+        tmb === null ||
+        purity === null
+      ) {
+        return;
+      }
+
+      const ageYears = ageDays / 365;
+      const score =
+        20 +
+        Math.max(0, 18 - ageYears / 4) +
+        Math.min(12, tmb) +
+        Math.min(8, mutationCount / 40) +
+        purity * 12;
+
+      const predictedMonths = Math.max(3, Math.min(48, score)).toFixed(1);
+      const confidence = Math.max(70, Math.min(96, 70 + tmb)).toFixed(1);
+
+      setPrediction({
+        overallSurvivalMonths: predictedMonths,
+        confidence,
+        riskGroup:
+          Number(predictedMonths) >= 24
+            ? "Lower Risk"
+            : Number(predictedMonths) >= 14
+            ? "Intermediate Risk"
+            : "Higher Risk",
+      });
+      setHasPredicted(true);
     }
 
-    const ageYears = ageDays / 365;
-    const score =
-      20 +
-      Math.max(0, 18 - ageYears / 4) +
-      Math.min(12, tmb) +
-      Math.min(8, mutationCount / 40) +
-      purity * 12;
-
-    const predictedMonths = Math.max(3, Math.min(48, score)).toFixed(1);
-    const confidence = Math.max(70, Math.min(96, 70 + tmb)).toFixed(1);
-
-    setPrediction({
-      overallSurvivalMonths: predictedMonths,
-      confidence,
-      riskGroup:
-        Number(predictedMonths) >= 24
-          ? "Lower Risk"
-          : Number(predictedMonths) >= 14
-          ? "Intermediate Risk"
-          : "Higher Risk",
-    });
-    setHasPredicted(true);
+     /** File Upload Prediction - Placeholder */
+    if (activeTab === 1) {
+      if (!patientResource.files[0] ||
+          !observationResources.files[0] ||
+          !conditionResource.files[0]) {
+        return;
+      }
+      /** Placeholder prediction -- replace with ML model */
+      setPrediction({
+        overallSurvivalMonths: "24.5",
+        confidence: "85.3",
+        riskGroup: "Intermediate Risk",
+      });
+      setHasPredicted(true);
+    }
   };
 
   const tabs = [
@@ -162,6 +182,33 @@ function App() {
             ))} 
         </div>
 
+        <div className="section-label">
+            <span className="section-icon">📈</span>
+            <span>Clinical Features</span>
+          </div>
+
+        <div className="form-stack clinical-stack">
+            {selectFields.map((field) => (
+              <label className="field-group" key={field.id}>
+                <span className="field-label">{field.label}</span>
+                <select
+                  name={field.id}
+                  value={formData[field.id]}
+                  onChange={handleInputChange}
+                >
+                  <option value="" disabled>
+                    {field.placeholder}
+                  </option>
+                  {field.options.map((option) => (
+                    <option value={option} key={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ))}
+        </div>
+
     </div>
 
   },
@@ -169,18 +216,27 @@ function App() {
     <div className="file-upload-form">
         <p className="file-upload-instructions">Please upload the following FHIR JSON resources, and we will parse the necessary data for you:</p>
         <p className="file-upload-label">Patient Resource</p>
-          <input className="file-upload-input" type="file" accept=".json" />
+          <input id="patient-resource" className="file-upload-input" type="file" accept=".json" />
         <p className="file-upload-details">This provides information regarding the patient's age, which is used in the prediction model.</p>
 
 
-        <p className="file-upload-label">Observation Resources</p>
-            <input className="file-upload-input" type="file" accept=".json" />
+        <p className="file-upload-label">Observation Resource</p>
+            <input id="observation-resources" className="file-upload-input" type="file" accept=".json" />
         <p className="file-upload-details">This provides information regarding the patient's genomic features (including mutation count, TMB, and tumor purity), which are used in the prediction model.</p>
+
+        <p className="file-upload-label">Condition Resource</p>
+            <input id="condition-resource" className="file-upload-input" type="file" accept=".json" />
+        <p className="file-upload-details">This provides information regarding the patient's clinical features, such as cancer type, drug type, and sample type.</p>
     </div>
 
   }
 ]
 
+const patientResource = document.getElementById("patient-resource");
+const observationResources = document.getElementById("observation-resources");
+const conditionResource = document.getElementById("condition-resource");
+
+console.log(patientResource, observationResources, conditionResource);  
   return (
     <div className="app-shell">
       <header className="title-row">
