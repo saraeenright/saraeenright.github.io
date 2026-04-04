@@ -1,0 +1,245 @@
+#Patient Identifier	Sex	Diagnosis Age	Smoker	Lines of treatment	IRB	Treatment Type	Progress Free Survival (Months)	Progression Free Status	Durable Clinical Benefit
+#Identifier to uniquely specify a patient.	Sex	Age at which a condition or disease was first diagnosed.	Indicates if person is a smoker.	Lines of treatment	IRB	Treatment Type	Progress Free Survival (Months)	Progression Free Status	Durable Clinical Benefit
+#STRING	STRING	NUMBER	STRING	STRING	STRING	STRING	NUMBER	STRING	STRING
+#1	1	0	1	1	1	1	1	1	1
+PATIENT_ID	SEX	AGE	SMOKER	LINES_OF_TX	IRB	TREATMENT_TYPE	PFS_MONTHS	PFS_STATUS	DURABLE_CLINICAL_BENEFIT
+P-0000012	Female	58	Ever	1	Clinical trial	Combination	27.2	0:Not Progressed	YES
+P-0000082	Male	60	Ever	4	Clinical trial	Monotherapy	14.5	1:Progressed	YES
+P-0000208	Female	68	Ever	1	Clinical trial	Monotherapy	4.17	1:Progressed	NO
+P-0000235	Male	77	Ever	3	Commercial	Monotherapy	0.6	1:Progressed	NO
+P-0000299	Male	66	Ever	2	Clinical trial	Combination	1.63	1:Progressed	NO
+P-0000302	Male	67	Ever	3	Commercial	Monotherapy	4.93	0:Not Progressed	NE
+P-0000363	Male	71	Never	2	Clinical trial	Monotherapy	1.2	1:Progressed	NO
+P-0000458	Male	66	Ever	6	Commercial	Monotherapy	1.73	1:Progressed	NO
+P-0000563	Male	42	Never	1	Clinical trial	Monotherapy	1.5	1:Progressed	NO
+P-0000604	Male	57	Never	1	Clinical trial	Combination	11.83	1:Progressed	YES
+P-0000670	Female	49	Ever	1	Clinical trial	Combination	2.33	1:Progressed	NO
+P-0000681	Female	68	Ever	3	Commercial	Monotherapy	5.47	1:Progressed	NO
+P-0000689	Male	58	Ever	6	Commercial	Monotherapy	2.57	1:Progressed	NO
+P-0000731	Female	73	Ever	1	Clinical trial	Monotherapy	10.0	1:Progressed	YES
+P-0000826	Male	64	Ever	1	Clinical trial	Combination	3.8	1:Progressed	NO
+P-0000894	Male	79	Never	3	Clinical trial	Monotherapy	5.27	1:Progressed	NO
+P-0000913	Female	58	Never	7	Commercial	Monotherapy	3.5	1:Progressed	NO
+P-0000978	Female	59	Never	3	Commercial	Monotherapy	2.1	1:Progressed	NO
+P-0001093	Male	65	Ever	1	Clinical trial	Combination	22.43	1:Progressed	YES
+P-0001121	Female	44	Ever	2	Clinical trial	Monotherapy	1.17	1:Progressed	NO
+P-0001171	Male	53	Ever	2	Commercial	Monotherapy	13.17	1:Progressed	YES
+P-0001340	Male	62	Ever	3	Commercial	Monotherapy	5.33	1:Progressed	NO
+P-0001365	Male	71	Ever	3	Commercial	Monotherapy	1.87	1:Progressed	NO
+P-0001385	Female	50	Ever	1	Clinical trial	Combination	30.43	0:Not Progressed	YES
+P-0001633	Female	55	Never	3	Commercial	Monotherapy	0.67	1:Progressed	NO
+P-0001665	Female	48	Never	6	Commercial	Monotherapy	3.07	1:Progressed	NO
+P-0001830	Female	74	Ever	2	Clinical trial	Combination	4.63	1:Progressed	NO
+P-0001836	Female	60	Ever	2	Commercial	Monotherapy	1.77	1:Progressed	NO
+P-0001867	Male	70	Ever	3	Commercial	Monotherapy	4.2	1:Progressed	NO
+P-0001955	Female	31	Never	3	Commercial	Monotherapy	3.03	1:Progressed	NO
+P-0001977	Male	80	Ever	2	Commercial	Monotherapy	1.3	1:Progressed	NO
+P-0002028	Female	64	Ever	3	Commercial	Monotherapy	25.03	0:Not Progressed	YES
+P-0002151	Female	71	Ever	3	Commercial	Monotherapy	9.6	1:Progressed	YES
+P-0002160	Male	66	Ever	3	Commercial	Monotherapy	1.27	1:Progressed	NO
+P-0002225	Male	71	Never	2	Commercial	Monotherapy	2.57	1:Progressed	NO
+P-0002247	Female	69	Ever	3	Commercial	Monotherapy	2.77	1:Progressed	NO
+P-0002252	Female	73	Ever	2	Commercial	Monotherapy	4.27	1:Progressed	NO
+P-0002295	Female	75	Never	7	Clinical trial	Monotherapy	1.93	1:Progressed	NO
+P-0002320	Male	57	Never	2	Commercial	Monotherapy	1.77	1:Progressed	NO
+P-0002351	Female	74	Ever	3	Commercial	Monotherapy	5.37	1:Progressed	NO
+P-0002444	Male	66	Ever	3	Commercial	Monotherapy	2.1	1:Progressed	NO
+P-0002485	Male	43	Ever	1	Clinical trial	Monotherapy	7.5	1:Progressed	YES
+P-0002546	Male	67	Ever	1	Clinical trial	Combination	7.9	1:Progressed	YES
+P-0002559	Female	37	Never	1	Clinical trial	Monotherapy	1.07	1:Progressed	NO
+P-0002637	Male	53	Ever	1	Clinical trial	Combination	27.6	0:Not Progressed	YES
+P-0002639	Female	67	Ever	2	Commercial	Monotherapy	8.1	0:Not Progressed	YES
+P-0002731	Female	64	Ever	2	Commercial	Monotherapy	15.03	0:Not Progressed	YES
+P-0002751	Female	68	Ever	1	Clinical trial	Monotherapy	4.43	1:Progressed	NO
+P-0002758	Male	62	Ever	3	Commercial	Monotherapy	1.8	1:Progressed	NO
+P-0002766	Female	66	Ever	2	Commercial	Monotherapy	1.57	1:Progressed	NO
+P-0002794	Female	61	Ever	2	Commercial	Monotherapy	15.97	1:Progressed	YES
+P-0002806	Male	80	Ever	1	Clinical trial	Monotherapy	8.3	1:Progressed	YES
+P-0002826	Female	61	Ever	3	Clinical trial	Monotherapy	1.57	1:Progressed	NO
+P-0002874	Female	55	Ever	4	Commercial	Monotherapy	1.03	1:Progressed	NO
+P-0002890	Female	40	Never	4	Commercial	Monotherapy	0.37	1:Progressed	NO
+P-0002905	Male	73	Ever	3	Commercial	Monotherapy	1.63	1:Progressed	NO
+P-0002912	Male	22	Never	3	Clinical trial	Combination	4.33	1:Progressed	NO
+P-0002917	Female	51	Ever	2	Commercial	Monotherapy	2.57	1:Progressed	NO
+P-0002921	Female	73	Ever	2	Commercial	Monotherapy	6.63	1:Progressed	YES
+P-0002965	Male	56	Ever	1	Clinical trial	Monotherapy	1.17	1:Progressed	NO
+P-0002969	Male	56	Ever	4	Commercial	Monotherapy	0.73	1:Progressed	NO
+P-0003017	Female	81	Never	5	Commercial	Monotherapy	6.13	1:Progressed	YES
+P-0003034	Male	80	Ever	4	Commercial	Monotherapy	3.6	1:Progressed	NO
+P-0003119	Male	53	Ever	5	Commercial	Monotherapy	5.57	1:Progressed	NO
+P-0003132	Female	67	Ever	2	Commercial	Monotherapy	1.83	1:Progressed	NO
+P-0003157	Male	63	Never	2	Commercial	Monotherapy	0.77	1:Progressed	NO
+P-0003229	Male	60	Ever	6	Commercial	Monotherapy	19.77	0:Not Progressed	YES
+P-0003275	Male	69	Ever	2	Commercial	Monotherapy	5.53	1:Progressed	NO
+P-0003322	Female	73	Never	4	Commercial	Combination	4.23	0:Not Progressed	NE
+P-0003347	Male	58	Ever	2	Clinical trial	Monotherapy	6.17	1:Progressed	YES
+P-0003368	Female	57	Ever	1	Clinical trial	Combination	30.47	0:Not Progressed	YES
+P-0003495	Female	92	Never	5	Commercial	Monotherapy	8.67	1:Progressed	YES
+P-0003562	Female	60	Ever	1	Clinical trial	Monotherapy	9.2	1:Progressed	YES
+P-0003584	Male	59	Ever	1	Clinical trial	Monotherapy	8.33	1:Progressed	YES
+P-0003735	Female	68	Ever	3	Commercial	Monotherapy	0.87	1:Progressed	NO
+P-0003738	Female	57	Never	2	Commercial	Monotherapy	10.4	1:Progressed	YES
+P-0003782	Male	58	Ever	2	Commercial	Monotherapy	3.1	1:Progressed	NO
+P-0003869	Female	66	Ever	1	Clinical trial	Monotherapy	5.47	1:Progressed	NO
+P-0003913	Female	44	Never	5	Commercial	Monotherapy	0.4	1:Progressed	NO
+P-0003964	Male	73	Ever	3	Commercial	Monotherapy	2.8	1:Progressed	NO
+P-0003970	Female	47	Never	5	Commercial	Monotherapy	5.83	0:Not Progressed	NE
+P-0004020	Female	58	Ever	1	Clinical trial	Combination	5.13	1:Progressed	NO
+P-0004054	Male	61	Ever	2	Commercial	Monotherapy	3.17	1:Progressed	NO
+P-0004232	Male	75	Ever	5	Commercial	Monotherapy	4.63	1:Progressed	NO
+P-0004279	Female	59	Never	3	Commercial	Monotherapy	1.8	1:Progressed	NO
+P-0004436	Male	75	Ever	2	Commercial	Monotherapy	1.83	1:Progressed	NO
+P-0004442	Male	62	Ever	1	Commercial	Monotherapy	3.3	1:Progressed	NO
+P-0004463	Male	82	Never	2	Commercial	Monotherapy	1.57	1:Progressed	NO
+P-0004472	Female	62	Ever	2	Commercial	Monotherapy	4.0	1:Progressed	NO
+P-0004495	Male	40	Ever	2	Commercial	Monotherapy	1.07	1:Progressed	NO
+P-0004517	Male	67	Never	2	Commercial	Monotherapy	1.67	1:Progressed	NO
+P-0004588	Male	73	Ever	3	Commercial	Monotherapy	20.2	0:Not Progressed	YES
+P-0004701	Female	52	Ever	2	Commercial	Monotherapy	20.0	0:Not Progressed	YES
+P-0004752	Male	86	Never	3	Commercial	Monotherapy	1.8	1:Progressed	NO
+P-0004759	Female	63	Ever	2	Commercial	Monotherapy	0.67	1:Progressed	NO
+P-0004827	Male	58	Ever	1	Clinical trial	Monotherapy	10.47	1:Progressed	YES
+P-0004890	Female	69	Ever	2	Commercial	Monotherapy	1.83	1:Progressed	NO
+P-0004961	Female	69	Ever	3	Commercial	Monotherapy	4.37	1:Progressed	NO
+P-0004996	Male	54	Never	1	Clinical trial	Combination	1.83	1:Progressed	NO
+P-0005048	Female	68	Never	1	Clinical trial	Combination	15.07	1:Progressed	YES
+P-0005115	Male	55	Ever	2	Commercial	Monotherapy	1.83	1:Progressed	NO
+P-0005289	Male	67	Ever	3	Commercial	Monotherapy	1.23	1:Progressed	NO
+P-0005295	Male	73	Ever	3	Commercial	Monotherapy	16.9	1:Progressed	YES
+P-0005320	Male	47	Ever	2	Commercial	Monotherapy	6.57	1:Progressed	YES
+P-0005510	Male	67	Ever	4	Clinical trial	Monotherapy	21.13	1:Progressed	YES
+P-0005629	Female	81	Ever	2	Commercial	Monotherapy	1.73	1:Progressed	NO
+P-0005721	Male	79	Ever	2	Commercial	Monotherapy	10.43	1:Progressed	YES
+P-0005752	Male	64	Ever	5	Clinical trial	Monotherapy	1.8	1:Progressed	NO
+P-0005792	Male	59	Ever	2	Commercial	Monotherapy	3.23	1:Progressed	NO
+P-0005848	Female	81	Ever	2	Commercial	Monotherapy	8.63	0:Not Progressed	YES
+P-0005898	Female	71	Never	2	Commercial	Monotherapy	12.53	1:Progressed	YES
+P-0005975	Female	81	Ever	2	Commercial	Monotherapy	1.17	1:Progressed	NO
+P-0005981	Male	60	Ever	1	Clinical trial	Monotherapy	18.9	1:Progressed	YES
+P-0006047	Female	62	Never	2	Commercial	Monotherapy	7.8	1:Progressed	YES
+P-0006071	Female	53	Ever	2	Commercial	Monotherapy	4.73	1:Progressed	NO
+P-0006084	Male	62	Never	1	Commercial	Monotherapy	3.5	1:Progressed	NO
+P-0006114	Female	55	Never	3	Commercial	Monotherapy	1.8	1:Progressed	NO
+P-0006294	Female	63	Ever	2	Commercial	Monotherapy	0.73	1:Progressed	NO
+P-0006312	Female	51	Never	2	Clinical trial	Combination	15.3	0:Not Progressed	YES
+P-0006330	Male	45	Never	2	Commercial	Monotherapy	5.4	1:Progressed	NO
+P-0006343	Female	60	Ever	2	Commercial	Monotherapy	1.6	1:Progressed	NO
+P-0006364	Male	63	Ever	2	Commercial	Monotherapy	4.33	1:Progressed	NO
+P-0006415	Male	86	Ever	2	Commercial	Monotherapy	1.97	1:Progressed	NO
+P-0006540	Male	70	Ever	1	Clinical trial	Combination	1.67	1:Progressed	NO
+P-0006642	Female	68	Ever	2	Commercial	Monotherapy	2.7	1:Progressed	NO
+P-0006724	Female	48	Ever	2	Commercial	Monotherapy	7.37	0:Not Progressed	YES
+P-0006768	Male	66	Ever	1	Commercial	Monotherapy	4.27	1:Progressed	NO
+P-0006895	Male	65	Ever	2	Commercial	Monotherapy	9.37	0:Not Progressed	YES
+P-0006954	Female	66	Ever	3	Commercial	Monotherapy	1.63	1:Progressed	NO
+P-0006993	Male	68	Ever	3	Commercial	Monotherapy	1.0	1:Progressed	NO
+P-0007084	Male	83	Ever	1	Clinical trial	Combination	1.63	1:Progressed	NO
+P-0007088	Female	42	Ever	2	Clinical trial	Monotherapy	1.87	1:Progressed	NO
+P-0007101	Male	76	Ever	2	Commercial	Monotherapy	1.7	1:Progressed	NO
+P-0007121	Female	58	Ever	1	Commercial	Monotherapy	8.77	0:Not Progressed	YES
+P-0007123	Female	66	Ever	2	Commercial	Monotherapy	15.9	0:Not Progressed	YES
+P-0007278	Female	55	Ever	3	Commercial	Monotherapy	2.57	1:Progressed	NO
+P-0007418	Female	56	Ever	2	Commercial	Monotherapy	12.87	0:Not Progressed	YES
+P-0007420	Female	85	Ever	2	Commercial	Monotherapy	2.37	1:Progressed	NO
+P-0007493	Male	76	Ever	2	Commercial	Monotherapy	2.07	0:Not Progressed	NE
+P-0007582	Male	82	Ever	2	Commercial	Monotherapy	1.03	1:Progressed	NO
+P-0007583	Female	69	Ever	2	Commercial	Monotherapy	1.63	1:Progressed	NO
+P-0007597	Male	73	Ever	2	Commercial	Monotherapy	1.17	1:Progressed	NO
+P-0007619	Male	77	Ever	2	Commercial	Monotherapy	1.17	1:Progressed	NO
+P-0007633	Male	76	Never	1	Clinical trial	Combination	24.27	1:Progressed	YES
+P-0007757	Female	37	Ever	2	Clinical trial	Combination	6.33	1:Progressed	YES
+P-0007861	Female	76	Never	3	Commercial	Monotherapy	2.6	1:Progressed	NO
+P-0007879	Female	68	Ever	2	Commercial	Monotherapy	12.07	1:Progressed	YES
+P-0007977	Female	69	Ever	2	Commercial	Monotherapy	1.63	1:Progressed	NO
+P-0007978	Female	50	Ever	2	Commercial	Monotherapy	2.5	1:Progressed	NO
+P-0008176	Female	71	Never	1	Commercial	Monotherapy	1.93	1:Progressed	NO
+P-0008239	Female	74	Ever	2	Commercial	Monotherapy	15.13	1:Progressed	YES
+P-0008295	Male	57	Ever	1	Commercial	Monotherapy	3.17	1:Progressed	NO
+P-0008322	Male	66	Ever	2	Commercial	Monotherapy	2.1	0:Not Progressed	NE
+P-0008370	Female	77	Ever	2	Commercial	Monotherapy	0.9	1:Progressed	NO
+P-0008406	Female	67	Ever	4	Commercial	Monotherapy	1.17	1:Progressed	NO
+P-0008442	Female	65	Never	2	Commercial	Monotherapy	1.4	1:Progressed	NO
+P-0008715	Male	73	Ever	1	Clinical trial	Combination	9.1	1:Progressed	YES
+P-0008786	Male	64	Never	2	Commercial	Monotherapy	1.87	0:Not Progressed	NE
+P-0008848	Male	76	Ever	2	Commercial	Monotherapy	1.33	1:Progressed	NO
+P-0008851	Male	63	Ever	1	Commercial	Monotherapy	1.4	1:Progressed	NO
+P-0008935	Female	74	Ever	3	Commercial	Monotherapy	3.07	1:Progressed	NO
+P-0008944	Female	46	Ever	1	Commercial	Monotherapy	1.6	1:Progressed	NO
+P-0008976	Male	83	Ever	2	Clinical trial	Combination	22.63	1:Progressed	YES
+P-0009080	Male	74	Ever	2	Commercial	Monotherapy	1.87	1:Progressed	NO
+P-0009202	Male	66	Ever	2	Commercial	Monotherapy	3.47	0:Not Progressed	NE
+P-0009256	Female	75	Ever	2	Commercial	Monotherapy	7.47	1:Progressed	YES
+P-0009274	Female	76	Ever	2	Commercial	Combination	1.0	1:Progressed	NO
+P-0009293	Female	80	Ever	2	Commercial	Monotherapy	16.57	0:Not Progressed	YES
+P-0009319	Male	62	Ever	1	Clinical trial	Combination	13.0	1:Progressed	YES
+P-0009379	Male	69	Ever	3	Commercial	Monotherapy	1.03	1:Progressed	NO
+P-0009419	Male	60	Ever	2	Commercial	Monotherapy	1.73	1:Progressed	NO
+P-0009426	Female	64	Ever	6	Commercial	Monotherapy	5.53	1:Progressed	NO
+P-0009469	Female	32	Never	2	Commercial	Monotherapy	2.73	1:Progressed	NO
+P-0009473	Male	79	Ever	2	Commercial	Monotherapy	11.97	0:Not Progressed	YES
+P-0009501	Male	72	Ever	2	Commercial	Monotherapy	2.6	1:Progressed	NO
+P-0009505	Female	62	Ever	1	Commercial	Monotherapy	2.2	1:Progressed	NO
+P-0009521	Female	74	Ever	2	Commercial	Monotherapy	2.47	1:Progressed	NO
+P-0009586	Female	55	Ever	2	Commercial	Monotherapy	7.17	1:Progressed	YES
+P-0009655	Female	68	Ever	1	Clinical trial	Combination	8.63	1:Progressed	YES
+P-0009680	Female	59	Ever	5	Commercial	Monotherapy	5.4	1:Progressed	NO
+P-0009763	Female	48	Ever	2	Clinical trial	Combination	1.57	1:Progressed	NO
+P-0009764	Female	50	Ever	2	Commercial	Monotherapy	6.3	0:Not Progressed	YES
+P-0009833	Female	54	Ever	2	Commercial	Monotherapy	10.4	1:Progressed	YES
+P-0009959	Male	66	Ever	2	Commercial	Monotherapy	5.87	1:Progressed	NO
+P-0010024	Male	80	Ever	2	Commercial	Monotherapy	16.73	0:Not Progressed	YES
+P-0010025	Female	58	Ever	2	Commercial	Monotherapy	1.63	1:Progressed	NO
+P-0010065	Male	39	Ever	2	Commercial	Monotherapy	7.53	0:Not Progressed	YES
+P-0010213	Female	50	Ever	2	Commercial	Monotherapy	16.8	0:Not Progressed	YES
+P-0010256	Female	72	Ever	2	Commercial	Monotherapy	3.1	1:Progressed	NO
+P-0010636	Male	68	Ever	2	Commercial	Monotherapy	5.77	1:Progressed	NO
+P-0010648	Male	73	Ever	2	Commercial	Monotherapy	2.03	1:Progressed	NO
+P-0010715	Male	67	Ever	2	Commercial	Combination	2.77	0:Not Progressed	NE
+P-0010736	Male	78	Ever	1	Clinical trial	Monotherapy	9.8	1:Progressed	YES
+P-0010760	Male	51	Ever	2	Commercial	Monotherapy	5.43	1:Progressed	NO
+P-0010840	Female	55	Ever	2	Commercial	Monotherapy	0.83	1:Progressed	NO
+P-0010891	Female	42	Never	3	Commercial	Combination	1.27	1:Progressed	NO
+P-0010986	Female	55	Ever	2	Commercial	Monotherapy	2.3	1:Progressed	NO
+P-0011033	Female	62	Never	2	Commercial	Monotherapy	1.7	1:Progressed	NO
+P-0011036	Male	55	Ever	2	Commercial	Monotherapy	1.8	1:Progressed	NO
+P-0011149	Female	58	Ever	2	Commercial	Monotherapy	2.47	1:Progressed	NO
+P-0011180	Female	60	Never	3	Commercial	Monotherapy	1.83	1:Progressed	NO
+P-0011192	Female	74	Ever	2	Commercial	Monotherapy	2.27	1:Progressed	NO
+P-0011244	Male	76	Ever	2	Commercial	Monotherapy	2.1	1:Progressed	NO
+P-0011254	Female	56	Ever	2	Clinical trial	Combination	1.53	1:Progressed	NO
+P-0011499	Female	71	Ever	1	Commercial	Monotherapy	2.27	1:Progressed	NO
+P-0011541	Female	77	Ever	3	Commercial	Monotherapy	4.2	0:Not Progressed	NE
+P-0011559	Male	72	Ever	2	Commercial	Monotherapy	5.37	1:Progressed	NO
+P-0012076	Male	72	Never	2	Clinical trial	Combination	3.5	1:Progressed	NO
+P-0012192	Female	72	Ever	2	Clinical trial	Combination	12.8	0:Not Progressed	YES
+P-0012373	Male	68	Ever	2	Commercial	Monotherapy	1.77	1:Progressed	NO
+P-0012427	Male	66	Ever	2	Commercial	Monotherapy	1.7	1:Progressed	NO
+P-0012629	Male	81	Ever	2	Commercial	Monotherapy	4.8	1:Progressed	NO
+P-0012729	Male	69	Ever	2	Commercial	Monotherapy	4.27	1:Progressed	NO
+P-0012817	Male	54	Ever	2	Commercial	Monotherapy	7.2	0:Not Progressed	YES
+P-0012846	Female	59	Ever	1	Commercial	Monotherapy	11.3	0:Not Progressed	YES
+P-0012849	Male	57	Ever	2	Commercial	Monotherapy	1.7	1:Progressed	NO
+P-0012866	Female	50	Never	3	Commercial	Monotherapy	2.9	1:Progressed	NO
+P-0012908	Male	79	Never	2	Commercial	Monotherapy	3.6	1:Progressed	NO
+P-0012931	Male	71	Ever	2	Commercial	Monotherapy	2.0	1:Progressed	NO
+P-0013653	Female	69	Ever	2	Clinical trial	Combination	5.43	1:Progressed	NO
+P-0014172	Male	83	Ever	1	Commercial	Monotherapy	3.77	1:Progressed	NO
+P-0014269	Male	74	Ever	2	Commercial	Monotherapy	1.7	1:Progressed	NO
+P-0014451	Female	64	Ever	2	Commercial	Monotherapy	0.6	1:Progressed	NO
+P-0014529	Female	65	Ever	1	Commercial	Monotherapy	4.67	0:Not Progressed	NE
+P-0014599	Male	63	Ever	2	Commercial	Monotherapy	8.83	0:Not Progressed	YES
+P-0014786	Female	65	Ever	2	Commercial	Monotherapy	1.87	1:Progressed	NO
+P-0014818	Male	83	Ever	1	Commercial	Monotherapy	6.03	1:Progressed	YES
+P-0015078	Female	69	Ever	2	Commercial	Monotherapy	2.37	1:Progressed	NO
+P-0015296	Male	67	Ever	1	Commercial	Monotherapy	6.43	0:Not Progressed	YES
+P-0015531	Female	53	Ever	2	Commercial	Monotherapy	7.1	0:Not Progressed	YES
+P-0015556	Male	64	Ever	2	Commercial	Monotherapy	16.73	1:Progressed	YES
+P-0015758	Female	88	Ever	1	Commercial	Monotherapy	4.07	0:Not Progressed	NE
+P-0015771	Male	62	Ever	2	Clinical trial	Combination	3.43	1:Progressed	NO
+P-0015780	Male	51	Ever	2	Commercial	Monotherapy	1.83	1:Progressed	NO
+P-0015785	Female	56	Ever	2	Commercial	Monotherapy	4.17	1:Progressed	NO
+P-0015984	Female	66	Ever	2	Commercial	Monotherapy	1.63	1:Progressed	NO
+P-0016033	Male	72	Ever	1	Commercial	Monotherapy	5.5	0:Not Progressed	NE
+P-0016046	Female	68	Never	2	Commercial	Monotherapy	2.67	1:Progressed	NO
+P-0016646	Male	76	Ever	1	Commercial	Monotherapy	1.87	1:Progressed	NO
+P-0016809	Female	88	Ever	1	Commercial	Monotherapy	4.13	0:Not Progressed	NE
