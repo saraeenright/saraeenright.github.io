@@ -1,0 +1,18 @@
+{
+  "resourceType": "Patient",
+  "id": "patient-nsclc-002",
+  "identifier": [
+    {
+      "system": "http://hospital.example.org/mrn",
+      "value": "MRN-00200"
+    }
+  ],
+  "name": [
+    {
+      "family": "Chen",
+      "given": ["Wei"]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1972-09-22"
+}

@@ -1,0 +1,18 @@
+{
+  "resourceType": "Patient",
+  "id": "patient-rcc-003",
+  "identifier": [
+    {
+      "system": "http://hospital.example.org/mrn",
+      "value": "MRN-00300"
+    }
+  ],
+  "name": [
+    {
+      "family": "Okafor",
+      "given": ["Adaeze"]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1958-02-14"
+}

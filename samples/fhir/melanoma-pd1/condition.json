@@ -1,0 +1,31 @@
+{
+  "resourceType": "Condition",
+  "id": "cond-melanoma-001",
+  "clinicalStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+        "code": "active"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "372244006",
+        "display": "Malignant melanoma of skin"
+      }
+    ],
+    "text": "Malignant melanoma of skin"
+  },
+  "subject": {
+    "reference": "Patient/patient-melanoma-001"
+  },
+  "onsetDateTime": "2021-11-02",
+  "note": [
+    {
+      "text": "Patient on pembrolizumab monotherapy since 2022-04."
+    }
+  ]
+}

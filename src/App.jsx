@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import React from "react";
+import { extractFeaturesFromFhir } from "./fhir/parseFhir";
 
 const genomicFields = [
   {
@@ -33,7 +34,8 @@ const selectFields = [
     id: "cancerType",
     label: "Cancer Type",
     placeholder: "Select cancer type",
-    options: ["Melanoma", "NSCLC", "Renal Cell Carcinoma", "Bladder Cancer"],
+    options: ["Breast Cancer", "Cancer of Unknown Primary", "Colorectal Cancer", "Esophagogastric Cancer", 
+              "Glioma", "Head and Neck Cancer", "Melanoma", "Non-Small Cell Lung Cancer", "Renal Cell Carcinoma", "Other"],
   },
   {
     id: "drugType",
@@ -79,10 +81,20 @@ function App() {
   const [hasPredicted, setHasPredicted] = useState(false);
   const [prediction, setPrediction] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
+  const [files, setFiles] = useState({patient: null, observation: null, condition: null});
+  const [fhirWarnings, setFhirWarnings] = useState([]);
 
   const isPredictDisabled = useMemo(() => {
-    return Object.values(formData).some((value) => value === "");
-  }, [formData]);
+    if (activeTab === 0) {
+      return Object.values(formData).some((value) => value === "");
+    }
+
+    if (activeTab === 1) {    
+      return !Object.values(files).every(Boolean);
+    }
+
+    return true;
+  }, [activeTab, formData, files]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -90,72 +102,221 @@ function App() {
       ...current,
       [name]: value,
     }));
-    console.log("Current form data:", formData);
   };
 
   const handleReset = () => {
-    setFormData(initialFormState);
-    setPrediction(null);
-    setHasPredicted(false);
+    if (activeTab === 0) {
+      setFormData(initialFormState);
+      setPrediction(null);
+      setHasPredicted(false);
+    } 
+
+    if (activeTab === 1) {
+      setFiles({patient: null, observation: null, condition: null});
+      setPrediction(null);
+      setHasPredicted(false);
+      setFhirWarnings([]);
+    }
   };
 
   const handlePredict = () => {
     /** Manual Input Prediction */
     if (activeTab === 0) {
-      const ageDays = parseNumericInput(formData.ageAtSequencingDays);
-      const mutationCount = parseNumericInput(formData.mutationCount);
-      const tmb = parseNumericInput(formData.tmb);
-      const purity = parseNumericInput(formData.tumorPurity);
-
-      if (
-        ageDays === null ||
-        mutationCount === null ||
-        tmb === null ||
-        purity === null
-      ) {
-        return;
-      }
-
-      const ageYears = ageDays / 365;
-      const score =
-        20 +
-        Math.max(0, 18 - ageYears / 4) +
-        Math.min(12, tmb) +
-        Math.min(8, mutationCount / 40) +
-        purity * 12;
-
-      const predictedMonths = Math.max(3, Math.min(48, score)).toFixed(1);
-      const confidence = Math.max(70, Math.min(96, 70 + tmb)).toFixed(1);
-
+      
+      const updatedInput = changeDataFormat(formData);
+      const riskScore = predictModel(updatedInput);
+      console.log(riskScore);
+      let medSurv = "";
+      let riskGroup = ""; 
+      [medSurv, riskGroup] = categorizeRisk(riskScore);
+      
       setPrediction({
-        overallSurvivalMonths: predictedMonths,
-        confidence,
-        riskGroup:
-          Number(predictedMonths) >= 24
-            ? "Lower Risk"
-            : Number(predictedMonths) >= 14
-            ? "Intermediate Risk"
-            : "Higher Risk",
+        riskScore: riskScore.toFixed(2),
+        approximateMedianSurvival: medSurv,
+        riskGroup: riskGroup,
       });
       setHasPredicted(true);
     }
 
-     /** File Upload Prediction - Placeholder */
+     /** File Upload Prediction - FHIR */
     if (activeTab === 1) {
-      if (!patientResource.files[0] ||
-          !observationResources.files[0] ||
-          !conditionResource.files[0]) {
-        return;
-      }
-      /** Placeholder prediction -- replace with ML model */
+      if (Object.values(files).every(Boolean)) {
+        /** Placeholder prediction -- replace with ML model */
+      const { features, missing } = extractFeaturesFromFhir(files);
+
+      setFhirWarnings(missing);
+
+      const updatedInput = changeDataFormat(features);
+      const riskScore = predictModel(updatedInput);
+
+      console.log(riskScore);
+      let medSurv = "";
+      let riskGroup = ""; 
+      [medSurv, riskGroup] = categorizeRisk(riskScore);
+      
       setPrediction({
-        overallSurvivalMonths: "24.5",
-        confidence: "85.3",
-        riskGroup: "Intermediate Risk",
+        riskScore: riskScore.toFixed(2),
+        approximateMedianSurvival: medSurv,
+        riskGroup: riskGroup,
       });
       setHasPredicted(true);
+      }
     }
   };
+
+  const changeDataFormat = (formData) => {
+    const baseInputData = {
+      ageDays: 0, 
+      mutationCount: 0,
+      tmb: 0,
+      tumorPurity: 0,
+      breastCancerType: 0, 
+      unknownCancerType: 0, 
+      colorectalCancerType: 0, 
+      esophagogastricCancerType: 0,
+      gliomaCancerType: 0, 
+      headNeckCancerType: 0,
+      melanomaCancerType: 0,
+      nsclcType: 0, 
+      renalCellCarcinomaType: 0, 
+      drugCombo: 0,
+      drugpdpdl: 0,
+      sexMale: 0,
+      primarySample: 0, 
+    };
+
+    let inputData =  baseInputData;
+    inputData.ageDays = parseNumericInput(formData.ageAtSequencingDays) / 365.25;
+    inputData.mutationCount = parseNumericInput(formData.mutationCount);
+    inputData.tmb = parseNumericInput(formData.tmb);
+    inputData.tumorPurity = parseNumericInput(formData.tumorPurity);
+    
+    switch (formData.cancerType) {
+      case "Breast Cancer":
+        inputData.breastCancerType = 1;
+        break;
+      case "Cancer of Unknown Primary":
+        inputData.unknownCancerType = 1;
+        break;
+      case "Colorectal Cancer":
+        inputData.colorectalCancerType = 1;
+        break;
+      case "Esophagogastric Cancer":
+        inputData.esophagogastricCancerType = 1;
+        break;
+      case "Glioma":
+        inputData.gliomaCancerType = 1;
+        break;
+      case "Head and Neck Cancer":
+        inputData.headNeckCancerType = 1;
+        break;
+      case "Melanoma":
+        inputData.melanomaCancerType = 1;
+        break;
+      case "Non-Small Cell Lung Cancer":
+        inputData.nsclcType = 1;
+        break;
+      case "Renal Cell Carcinoma":
+        inputData.renalCellCarcinomaType = 1;
+        break;
+      default:
+        break;
+    }
+
+    if (formData.drugType === "PD-1 Inhibitor" || formData.drugType === "PD-L1 Inhibitor") {
+      inputData.drugpdpdl = 1;
+    }
+    
+    if (formData.drugType === "Combo") {
+      inputData.drugCombo = 1;
+    }
+    if (formData.sex === "Male") {
+      inputData.sexMale = 1;
+    }
+
+    if (formData.sampleType === "Primary") {
+      inputData.primarySample = 1;
+    }
+
+    return inputData;
+  };
+
+  const predictModel = (inputData) => {
+    const coefficients = {
+      "ageDays": -0.005020196166512083, 
+      "mutationCount": -0.015148086917501222,
+      "tmb": 	-0.007470441228858219,
+      "tumorPurity": 0.0027708524987794863,
+      "breastCancerType": 0.6245073405845271, 
+      "unknownCancerType": 0.37403619963012136, 
+      "colorectalCancerType": -0.13305391988338053, 
+      "esophagogastricCancerType": 0.3266658146006979,
+      "gliomaCancerType": 0.08405126931975918, 
+      "headNeckCancerType": 0.21485125768376317,
+      "melanomaCancerType": -0.4682788540874561,
+      "nsclcType": 0.2827239499536432, 
+      "renalCellCarcinomaType": -0.9139104995245932, 
+      "drugCombo": 0.010533644067337991,
+      "drugpdpdl": 0.5450946890477282,
+      "sexMale": 0.008499409694287825,
+      "primarySample": -0.006837051937955503,
+    };
+
+    let logRisk = 0;
+    for (const [feature, coef] of Object.entries(coefficients)) {
+      const value = inputData[feature] ?? 0;
+      logRisk += coef * value;
+    }
+
+    const riskScore = Math.exp(logRisk);
+
+    return riskScore;
+    
+    
+  }
+
+  const categorizeRisk = (riskScore) => {
+    let medSurv = "";
+    let riskGroup = "";
+    if (riskScore > 1.5) {
+      medSurv = "0-3 months";
+      riskGroup = "Extremely High Risk";
+    } else if (riskScore > 1.2) {
+      medSurv = "3-6 months";
+      riskGroup = "High Risk";
+    } else if (riskScore > 0.8) {
+      medSurv = "6-12 months";
+      riskGroup = "Moderate Risk";
+    } else if (riskScore > 0.5) {
+      medSurv = "1-3 years";
+      riskGroup = "Low Risk";
+    } else {
+      medSurv = ">3 years";
+      riskGroup = "Extremely Low Risk";
+    }
+    return [medSurv, riskGroup];
+  }
+  const handleFileChange = (event, key) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const jsonData = JSON.parse(e.target.result);
+        setFiles((prev) => ({
+          ...prev,
+          [key]: jsonData,
+        }));
+      } catch (error) {
+        console.error("Error parsing JSON file:", error);
+      }
+    };
+    reader.readAsText(file);
+  };
+
+
+
+
 
   const tabs = [
   {label: "Manual Input", content: 
@@ -216,27 +377,27 @@ function App() {
     <div className="file-upload-form">
         <p className="file-upload-instructions">Please upload the following FHIR JSON resources, and we will parse the necessary data for you:</p>
         <p className="file-upload-label">Patient Resource</p>
-          <input id="patient-resource" className="file-upload-input" type="file" accept=".json" />
+          <input className="file-upload-input" type="file" accept=".json" onChange={(e) => handleFileChange(e, 'patient')} />
         <p className="file-upload-details">This provides information regarding the patient's age, which is used in the prediction model.</p>
 
 
         <p className="file-upload-label">Observation Resource</p>
-            <input id="observation-resources" className="file-upload-input" type="file" accept=".json" />
+            <input className="file-upload-input" type="file" accept=".json" onChange={(e) => handleFileChange(e, 'observation')} />
         <p className="file-upload-details">This provides information regarding the patient's genomic features (including mutation count, TMB, and tumor purity), which are used in the prediction model.</p>
 
         <p className="file-upload-label">Condition Resource</p>
-            <input id="condition-resource" className="file-upload-input" type="file" accept=".json" />
+            <input className="file-upload-input" type="file" accept=".json" onChange={(e) => handleFileChange(e, 'condition')} />
         <p className="file-upload-details">This provides information regarding the patient's clinical features, such as cancer type, drug type, and sample type.</p>
+
     </div>
 
   }
 ]
 
-const patientResource = document.getElementById("patient-resource");
-const observationResources = document.getElementById("observation-resources");
-const conditionResource = document.getElementById("condition-resource");
 
-console.log(patientResource, observationResources, conditionResource);  
+
+
+ 
   return (
     <div className="app-shell">
       <header className="title-row">
@@ -256,7 +417,7 @@ console.log(patientResource, observationResources, conditionResource);
             {tabs.map((tab, index) => (
               <button
                 key={index}
-                className={`tab-button ${activeTab === index ? "active" : ""}`}
+                className={`tab-button${activeTab === index ? "-active" : ""}`}
                 onClick={() => setActiveTab(index)}
               >
               {tab.label}
@@ -272,13 +433,13 @@ console.log(patientResource, observationResources, conditionResource);
 
           <div className="button-row">
             <button
-              className="predict-button"
+              className={`predict-button${hasPredicted? "" : "-done"}`}
               onClick={handlePredict}
               disabled={isPredictDisabled}
             >
               Predict Survival
             </button>
-            <button className="reset-button" onClick={handleReset}>
+            <button className={`reset-button${hasPredicted? "" : "-done"}`} onClick={handleReset}>
               Reset
             </button>
           </div>
@@ -298,17 +459,27 @@ console.log(patientResource, observationResources, conditionResource);
           ) : (
             <div className="prediction-results">
               <div className="result-item">
-                <span>Overall survival (months)</span>
-                <strong>{prediction.overallSurvivalMonths}</strong>
+                <span>Risk Score</span>
+                <strong>{prediction.riskScore}</strong>
               </div>
               <div className="result-item">
-                <span>Risk group</span>
+                <span>Approximate Median Survival</span>
+                <strong>{prediction.approximateMedianSurvival}</strong>
+              </div>
+              <div className="result-item">
+                <span>Risk Group</span>
                 <strong>{prediction.riskGroup}</strong>
               </div>
-              <div className="result-item">
-                <span>Model confidence</span>
-                <strong>{prediction.confidence}%</strong>
+              {hasPredicted && fhirWarnings.length > 0 && (
+                <div className="fhir-warning">
+                <strong>Missing from FHIR resources (using baseline 0):</strong>
+                <ul>
+                  {fhirWarnings.map((f) => (
+                   <li key={f}>{f}</li>
+                  ))}
+                </ul>
               </div>
+         )}
             </div>
           )}
         </section>
@@ -332,7 +503,6 @@ console.log(patientResource, observationResources, conditionResource);
             <ul>
               <li>Overall survival (months)</li>
               <li>Risk stratification category</li>
-              <li>Prediction confidence score</li>
               <li>Rule-based demonstration output</li>
             </ul>
           </div>

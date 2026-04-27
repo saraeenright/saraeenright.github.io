@@ -1,0 +1,33 @@
+{
+  "resourceType": "Observation",
+  "id": "obs-bladder-004",
+  "status": "final",
+  "code": {
+    "text": "Limited NGS panel"
+  },
+  "subject": {
+    "reference": "Patient/patient-bladder-004"
+  },
+  "effectiveDateTime": "2024-06-12",
+  "component": [
+    {
+      "code": {
+        "coding": [
+          { "system": "http://loinc.org", "code": "94076-7" }
+        ]
+      },
+      "valueQuantity": {
+        "value": 18.5,
+        "unit": "mutations/Mb"
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          { "system": "http://loinc.org", "code": "82120-4" }
+        ]
+      },
+      "valueInteger": 42
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "resourceType": "Observation",
+  "id": "obs-nsclc-002",
+  "status": "final",
+  "code": {
+    "text": "NGS comprehensive cancer panel"
+  },
+  "subject": {
+    "reference": "Patient/patient-nsclc-002"
+  },
+  "effectiveDateTime": "2023-08-01",
+  "specimen": {
+    "display": "Metastatic lymph node biopsy"
+  },
+  "component": [
+    {
+      "code": {
+        "coding": [
+          { "system": "http://loinc.org", "code": "94076-7" }
+        ]
+      },
+      "valueQuantity": {
+        "value": 9.8,
+        "unit": "mutations/Mb"
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          { "code": "82120-4", "display": "Somatic mutation count" }
+        ]
+      },
+      "valueInteger": 4
+    },
+    {
+      "code": {
+        "coding": [
+          { "system": "http://loinc.org", "code": "33723-0" }
+        ]
+      },
+      "valueDecimal": 0.42
+    }
+  ]
+}

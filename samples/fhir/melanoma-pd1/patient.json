@@ -1,0 +1,18 @@
+{
+  "resourceType": "Patient",
+  "id": "patient-melanoma-001",
+  "identifier": [
+    {
+      "system": "http://hospital.example.org/mrn",
+      "value": "MRN-00100"
+    }
+  ],
+  "name": [
+    {
+      "family": "Garcia",
+      "given": ["Marcus"]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1965-06-01"
+}

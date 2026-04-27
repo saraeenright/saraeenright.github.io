@@ -1,0 +1,47 @@
+{
+  "resourceType": "Observation",
+  "id": "obs-rcc-003",
+  "status": "final",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "94076-7",
+        "display": "Tumor mutational burden"
+      }
+    ],
+    "text": "TMB"
+  },
+  "valueQuantity": {
+    "value": 6.4,
+    "unit": "mutations/Mb"
+  },
+  "subject": {
+    "reference": "Patient/patient-rcc-003"
+  },
+  "effectiveDateTime": "2024-01-20",
+  "specimen": {
+    "display": "Primary renal tumor specimen"
+  },
+  "component": [
+    {
+      "code": {
+        "coding": [
+          { "system": "http://loinc.org", "code": "82120-4" }
+        ]
+      },
+      "valueInteger": 19
+    },
+    {
+      "code": {
+        "coding": [
+          { "system": "http://loinc.org", "code": "33723-0" }
+        ]
+      },
+      "valueQuantity": {
+        "value": 0.8,
+        "unit": "1"
+      }
+    }
+  ]
+}

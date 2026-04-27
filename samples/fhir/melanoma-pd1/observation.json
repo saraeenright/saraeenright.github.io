@@ -1,0 +1,70 @@
+{
+  "resourceType": "Observation",
+  "id": "obs-melanoma-001",
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "text": "Tumor genomic profiling panel"
+  },
+  "subject": {
+    "reference": "Patient/patient-melanoma-001"
+  },
+  "effectiveDateTime": "2022-03-15",
+  "specimen": {
+    "reference": "Specimen/spec-001",
+    "display": "Primary tumor biopsy"
+  },
+  "component": [
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "94076-7",
+            "display": "Tumor mutational burden"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 14.2,
+        "unit": "mutations/Mb"
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "82120-4",
+            "display": "Somatic mutation count"
+          }
+        ]
+      },
+      "valueInteger": 312
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "33723-0",
+            "display": "Tumor cellularity"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 0.65,
+        "unit": "1"
+      }
+    }
+  ]
+}
