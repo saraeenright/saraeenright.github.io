@@ -128,12 +128,14 @@ function App() {
       console.log(riskScore);
       let medSurv = "";
       let riskGroup = ""; 
-      [medSurv, riskGroup] = categorizeRisk(riskScore);
+      let suggestAct = "";
+      [medSurv, riskGroup, suggestAct] = categorizeRisk(riskScore);
       
       setPrediction({
         riskScore: riskScore.toFixed(2),
         approximateMedianSurvival: medSurv,
         riskGroup: riskGroup,
+        suggestedAction: suggestAct,
       });
       setHasPredicted(true);
     }
@@ -152,12 +154,14 @@ function App() {
       console.log(riskScore);
       let medSurv = "";
       let riskGroup = ""; 
-      [medSurv, riskGroup] = categorizeRisk(riskScore);
+      let suggestAct = "";
+      [medSurv, riskGroup, suggestAct] = categorizeRisk(riskScore);
       
       setPrediction({
         riskScore: riskScore.toFixed(2),
         approximateMedianSurvival: medSurv,
         riskGroup: riskGroup,
+        suggestedAction: suggestAct,
       });
       setHasPredicted(true);
       }
@@ -278,23 +282,29 @@ function App() {
   const categorizeRisk = (riskScore) => {
     let medSurv = "";
     let riskGroup = "";
+    let suggestAct = "";
     if (riskScore > 1.5) {
       medSurv = "0-3 months";
       riskGroup = "Extremely High Risk";
+      suggestAct = "Urgent tumor board review; consider trials/palliative pathways"
     } else if (riskScore > 1.2) {
       medSurv = "3-6 months";
       riskGroup = "High Risk";
+      suggestAct = "Intensified Monitoring"
     } else if (riskScore > 0.8) {
       medSurv = "6-12 months";
       riskGroup = "Moderate Risk";
+      suggestAct = "Proceed with ICI; schedule regular restaging"
     } else if (riskScore > 0.5) {
       medSurv = "1-3 years";
       riskGroup = "Low Risk";
+      suggestAct = "Standard Pathway";
     } else {
       medSurv = ">3 years";
       riskGroup = "Extremely Low Risk";
+      suggestAct = "Long-term favorable prognosis";
     }
-    return [medSurv, riskGroup];
+    return [medSurv, riskGroup, suggestAct];
   }
   const handleFileChange = (event, key) => {
     const file = event.target.files[0];
@@ -469,6 +479,10 @@ function App() {
               <div className="result-item">
                 <span>Risk Group</span>
                 <strong>{prediction.riskGroup}</strong>
+              </div>
+              <div className="result-item">
+                <span>Suggested Action</span>
+                <strong>{prediction.suggestedAction}</strong>
               </div>
               {hasPredicted && fhirWarnings.length > 0 && (
                 <div className="fhir-warning">
